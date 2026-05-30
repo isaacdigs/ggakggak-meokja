@@ -1,0 +1,29 @@
+# 작작먹자 전용 설정
+# Hermes Agent profile for AI calorie tracking
+
+model:
+  provider: openrouter
+  default: openai/gpt-4o  # Vision AI — gpt-4o works well for food recognition
+  context_length: 32000
+
+skills:
+  enabled:
+    - calorie-tracker  # 음식 사진 → 칼로리 분석 → 구글 시트 저장
+    - telegram          # 텔레그램 메시지 수신/발신
+    - google-workspace  # 구글 시트 접근
+  disabled: []
+
+telegram:
+  bot_token: "여기에_봇파더_토큰_입력"
+
+# 구글 시트 ID (작작먹자 전용 시트)
+sheets:
+  diet_log:
+    sheet_id: "여기에_구글_시트_ID_입력"
+    range: "식단기록!A:E"
+    headers:
+      - 날짜
+      - 시간
+      - 음식
+      - 칼로리(kcal)
+      - 메모
